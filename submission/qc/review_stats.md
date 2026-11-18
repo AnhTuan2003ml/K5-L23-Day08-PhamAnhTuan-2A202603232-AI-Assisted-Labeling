@@ -6,8 +6,8 @@
 ## 1. Bốn trạng thái (AI error profile)
 | Trạng thái | Số | Tỉ lệ | Mẫu số |
 |---|---|---|---|
-| accepted (giữ nguyên) | 469 | 469/505 = 92.9% | 505 box máy |
-| edited (sửa) | 6 | 6/505 = 1.2% | 505 box máy |
+| accepted (giữ nguyên) | 468 | 468/505 = 92.7% | 505 box máy |
+| edited (sửa) | 7 | 7/505 = 1.4% | 505 box máy |
 | deleted (xoá) | 30 | 30/505 = 5.9% | 505 box máy |
 | added (vẽ thêm) | 14 | 14/489 = 2.9% | 489 đối tượng sau duyệt |
 
@@ -16,7 +16,7 @@ Trong số deleted + added, **12 trường hợp là đổi lớp** (máy gán s
 ### Theo lớp
 | Lớp | accepted | edited | deleted | added |
 |---|---|---|---|---|
-| person | 260 | 3 | 5 | 0 |
+| person | 259 | 4 | 5 | 0 |
 | bicycle | 6 | 0 | 3 | 1 |
 | motorbike | 137 | 0 | 1 | 3 |
 | car | 52 | 0 | 4 | 2 |

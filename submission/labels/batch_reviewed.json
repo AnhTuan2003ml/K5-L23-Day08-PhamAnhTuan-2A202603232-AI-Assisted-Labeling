@@ -8784,12 +8784,12 @@
       "image_id": 21,
       "category_id": 1,
       "segmentation": [],
-      "area": 51622.89000000001,
+      "area": 93083.7,
       "bbox": [
         345.42,
         134.93,
         171.05,
-        301.8
+        544.19
       ],
       "iscrowd": 0,
       "attributes": {

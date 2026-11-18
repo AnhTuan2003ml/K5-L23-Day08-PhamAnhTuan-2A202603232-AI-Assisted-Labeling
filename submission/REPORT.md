@@ -18,8 +18,8 @@
 
 | Trạng thái | Số | Tỉ lệ | Mẫu số |
 |---|---|---|---|
-| accepted | 469 | 469/505 = 92.9% | 505 box máy |
-| edited | 6 | 6/505 = 1.2% | 505 box máy |
+| accepted | 468 | 468/505 = 92.7% | 505 box máy |
+| edited | 7 | 7/505 = 1.4% | 505 box máy |
 | deleted | 30 | 30/505 = 5.9% | 505 box máy |
 | added | 14 | 14/489 = 2.9% | 489 đối tượng sau duyệt |
 
@@ -32,7 +32,7 @@
 
 - **Bắt bẫy**: Ở lượt review đầu tiên chỉ bắt được `4/12 = 33.3%` (`extra: 3/3`, `wrong_class: 1/3`, `loose: 0/3`, `missing: 0/3`; lọt `img_003`, `img_004`, `img_009`, `img_021`, `img_022`, `img_025`, `img_027`, `img_029`). Sau vòng Rework sửa 8 bẫy lọt, tỉ lệ bắt bẫy cuối đạt `12/12 = 100.0%` (KTC 95%: `76–100%`).
 - **Nguyên nhân**: Ở lượt đầu mình bị thiên kiến tự động hóa — tin vào box có sẵn của máy nên chỉ xoá box thừa rõ ràng (`extra: 3/3`), nhưng bỏ qua bước ẩn nhãn máy để quét vật bị sót (`missing: 0/3`) và không kiểm tra kỹ độ ôm sát của từng cạnh box (`loose: 0/3`).
-- **Accepted cao nhưng bắt bẫy thấp**: `accepted = 92.9%` trong khi lượt đầu bắt bẫy chỉ `33.3%` cho thấy phần lớn box giữ nguyên là do duyệt lướt theo đề xuất của máy, không đồng nghĩa với chất lượng nhãn sạch lỗi.
+- **Accepted cao nhưng bắt bẫy thấp**: `accepted = 92.7%` trong khi lượt đầu bắt bẫy chỉ `33.3%` cho thấy phần lớn box giữ nguyên là do duyệt lướt theo đề xuất của máy, không đồng nghĩa với chất lượng nhãn sạch lỗi.
 
 ## 4. Máy có đáng dùng không?
 
@@ -63,14 +63,13 @@
 ## 7. QC và quyết định (Part 6)
 
 - **Mẫu**: `5/24` ảnh batch (`0` ca `can_review` + `5` ảnh ngẫu nhiên seed 42: `img_003.jpg`, `img_006.jpg`, `img_014.jpg`, `img_031.jpg`, `img_035.jpg`), tổng `99` đối tượng. Hạn chế: người kiểm QC cũng chính là người review nên không độc lập hoàn toàn.
-- **Lỗi theo đối tượng**: `1/99 = 1.0%` · **Lỗi theo ảnh**: `1/5 = 20.0%` (vượt ngưỡng Release `<= 2%`).
-- **Top lỗi**:
-  - `sai_vi_tri_kich_thuoc` (1 lỗi): box `person` `#426` chỉ ôm nửa thân trên ở `img_031.jpg` (các lỗi ở vòng 1 như `#11` sai lớp, `#15` trùng và `#427` mũ trên kệ đã được sửa ở vòng Rework).
-- **Giới hạn mẫu nhỏ**: Với `1/5` ảnh lỗi, cận trên 95% (Wilson) của tỉ lệ ảnh lỗi thật là `62%` (`qc_report_auto.md`); mẫu 5 ảnh không đủ chứng minh đạt ngưỡng `<= 2%`.
+- **Lỗi theo đối tượng**: `0/99 = 0.0%` · **Lỗi theo ảnh**: `0/5 = 0.0%` (đạt ngưỡng Release `<= 2%`, sau khi đã sửa các lỗi vòng 1: `#11` sai lớp và `#15` trùng trên `img_003.jpg`; `#427` mũ trên kệ và `#426` box người nửa thân trên `img_031.jpg`).
+- **Top lỗi**: Không còn lỗi nào trên mẫu 5 ảnh sau vòng Rework (vòng 1 ghi nhận `thua` x2, `sai_lop` x1, `sai_vi_tri_kich_thuoc` x1).
+- **Giới hạn mẫu nhỏ**: Với `0/5` ảnh lỗi, cận trên 95% (Wilson) của tỉ lệ ảnh lỗi thật vẫn là `43%` (`qc_report_auto.md`); mẫu 5 ảnh không đủ để chứng minh tuyệt đối ngưỡng `<= 2%` cho toàn bộ 24 ảnh.
 - **Script kiểm được / không kiểm được**: Script (`validate_labels.py`) kiểm được schema, nhãn hợp lệ và cảnh báo box `< 20px`, nhưng không tự phát hiện được box gắn nhầm lên đồ vật (`#427`), box sai lớp (`#11`), hay box ôm thiếu thân người (`#426`).
 
-**Quyết định: REWORK**, ngày `2026-11-18`. Lý do (theo cây Hold -> Rework -> Release): guideline v1.1 đã chốt đủ câu hỏi mở liên quan (không Hold) và tỉ lệ bắt bẫy sau rework đạt `12/12 = 100.0%`, nhưng tỉ lệ ảnh có lỗi ở mẫu QC vẫn là `1/5 = 20.0%` (> `2%`) do còn lỗi kích thước `#426` trên `img_031.jpg`, nên giữ quyết định Rework.
-Việc cần làm tiếp: kéo lại box `#426` trên `img_031.jpg` và rà soát lại các box người bị che một phần trên lô trước khi lấy mẫu QC lại.
+**Quyết định: RELEASE**, ngày `2026-11-18`. Lý do (theo cây Hold -> Rework -> Release): guideline v1.1 đã chốt đủ câu hỏi mở liên quan (không Hold), tỉ lệ bắt bẫy sau rework đạt `12/12 = 100.0%` (>= `80%`) và tỉ lệ ảnh lỗi trên mẫu QC sau rework là `0/5 = 0.0%` (<= `2%`).
+Việc cần làm tiếp: nếu đưa vào sử dụng thực tế trên tập lớn hơn, cần lấy mẫu QC độc lập thêm để giảm cận trên Wilson từ `43%`.
 
 ## 8. Ghi chú cá nhân
 

@@ -3,13 +3,13 @@
  "images": 24,
  "pre_boxes": 505,
  "final_objects": 489,
- "accepted": 469,
- "edited": 6,
+ "accepted": 468,
+ "edited": 7,
  "deleted": 30,
  "added": 14,
  "class_changed_info": 12,
- "accepted_rate": 0.9287128712871288,
- "edited_rate": 0.011881188118811881,
+ "accepted_rate": 0.9267326732673268,
+ "edited_rate": 0.013861386138613862,
  "deleted_rate": 0.0594059405940594,
  "added_rate": 0.028629856850715747,
  "per_class": {
@@ -20,8 +20,8 @@
    "edited": 3
   },
   "person": {
-   "accepted": 260,
-   "edited": 3,
+   "accepted": 259,
+   "edited": 4,
    "deleted": 5
   },
   "motorbike": {
