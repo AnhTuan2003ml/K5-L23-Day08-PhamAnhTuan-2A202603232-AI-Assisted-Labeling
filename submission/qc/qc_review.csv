@@ -1,0 +1,6 @@
+image,object_id,error_type,reviewer,note
+img_003.jpg,,khong,Phạm Anh Tuấn,đã sửa sai lớp #11 và xoá box trùng #15 ở vòng rework
+img_006.jpg,,khong,Phạm Anh Tuấn,đạt theo mẫu kiểm tra
+img_014.jpg,,khong,Phạm Anh Tuấn,đạt theo mẫu kiểm tra
+img_031.jpg,426,sai_vi_tri_kich_thuoc,Phạm Anh Tuấn,đã xoá box thừa #427; box person #426 vẫn chỉ ôm nửa thân trên của người bán hàng
+img_035.jpg,,khong,Phạm Anh Tuấn,đạt theo mẫu kiểm tra
